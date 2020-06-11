@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  descendant-service:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2020-06-11T16:15:12.754342548-05:00"
+    description: Descendant service example chart
+    digest: d1fd73980e2cc850f62dddd933a9fd943610c0b8b67b2f4689e807fec5f711ad
+    maintainers:
+    - name: Zachary Loeber
+    name: descendant-service
+    urls:
+    - https://github.com/zloeber/descendant-chart/releases/download/descendant-service-0.0.1/descendant-service-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-06-11T16:15:12.438726586-05:00"
