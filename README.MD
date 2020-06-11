@@ -14,3 +14,23 @@ Prometheus Instance
         - Matches to service labels
             - On a defined namespace
 ```
+
+## Usage
+
+```bash
+helm repo add descendent https://zloeber.github.io/descendent-chart/
+```
+
+## Building/Publishing
+
+Update the chart version in Chart.yaml, then run the following to perform a release for that version.
+
+```bash
+make deps build cr/upload cr/index
+git add --all . && git commit -m 'release: new release'
+git push origin master
+git checkout gh-pages
+git merge master
+git push origin gh-pages
+git checkout master
+```
