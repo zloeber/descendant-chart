@@ -1,0 +1,6 @@
+dependencies:
+- name: archetype
+  repository: https://zloeber.github.io/archetype-chart
+  version: 0.0.3
+digest: sha256:58ff07d5dabd446106f900e2979b630f0aa76e247518dfec75542b3a23641560
+generated: "2020-06-11T16:08:54.446810642-05:00"

@@ -1,0 +1,7 @@
+owner: zloeber
+git-repo: descendant-chart
+package-path: dist
+git-base-url: https://api.github.com/
+git-upload-url: https://uploads.github.com/
+charts-repo: https://github.com/zloeber/descendant-chart
+index-path: index.yaml

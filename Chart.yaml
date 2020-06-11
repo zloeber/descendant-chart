@@ -1,0 +1,12 @@
+apiVersion: v2
+name: descendant-service
+description: Descendant service example chart
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+maintainers:
+  - name: Zachary Loeber
+dependencies:
+  - name: archetype
+    version: "0.0.3"
+    repository: https://zloeber.github.io/archetype-chart

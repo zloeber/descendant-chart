@@ -1,0 +1,84 @@
+archetype:
+  app: descendantapp
+  zone: internal
+  dnsRoot: micro.svc
+  zoneMap:
+    internal: int
+    external: ext
+    staging: stage
+    default: ""
+  ingressClassMap:
+    internal: int
+    external: ext
+    staging: stage
+    default: int
+  certIssuerMap:
+    internal:
+      cert-manager.io/cluster-issuer: "default"
+    external:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    staging:
+      cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    default:
+      cert-manager.io/cluster-issuer: "default"
+  image:
+    repository: zloeber/hello-world-pipeline
+    tag: 'latest'
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: "1Gi"
+    limits:
+      memory: "1Gi"
+  deployment:
+    enabled: true
+    ports:
+      metrics: 8088
+      svc: 8000
+    readinessProbe:
+      enabled: true
+      probe:
+        httpGet:
+          path: /metrics
+          port: 8088
+    livelinessProbe:
+      enabled: true
+      probe:
+        httpGet:
+          path: /metrics
+          port: 8088
+  service:
+    enabled: true
+    ports:
+      svc:
+        port: 8000
+        targetPort: 8000
+        protocol: TCP
+  ingress:
+    enabled: true
+    tlsEnabled: true
+    hosts:
+    - secretName: po-alertmanager-ingress
+      paths:
+      - path: "/"
+        backend:
+          serviceName: po-alertmanager
+          servicePort: 9093
+  prometheus:
+    enabled: true
+    namespace: prometheus-operator
+    instance: kube-prometheus
+    ## Enable service monitoring
+    serviceMonitor:
+      enabled: true
+      targetPort: 8088
+      path: /metrics
+      interval: 60s
+      scrapeTimeout: 30s
+  #   ## Enable default PrometheusRule alerts for:
+  #   ## - KubePodCrashLooping
+  #   ## - PodFailure
+  #   ## - ServiceDown
+  #   ## - PodPendingUnknown
+    alerts:
+      enabled: true
