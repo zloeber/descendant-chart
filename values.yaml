@@ -55,28 +55,28 @@ archetype:
     enabled: true
   ingress:
     enabled: true
-    tlsEnabled: false
-    hosts:
-    - paths:
-      - path: "/"
-        backend:
-          serviceName: po-alertmanager
-          servicePort: 8000
-  prometheus:
-    enabled: true
-    namespace: prometheus-operator
-    instance: kube-prometheus
-    ## Enable service monitoring
-    serviceMonitor:
-      enabled: true
-      targetPort: 8088
-      path: /metrics
-      interval: 60s
-      scrapeTimeout: 30s
-  #   ## Enable default PrometheusRule alerts for:
-  #   ## - KubePodCrashLooping
-  #   ## - PodFailure
-  #   ## - ServiceDown
-  #   ## - PodPendingUnknown
-    alerts:
-      enabled: true
+    # tlsEnabled: false
+    # hosts:
+    # - paths:
+    #   - path: "/"
+    #     backend:
+    #       serviceName: po-alertmanager
+    #       servicePort: 8000
+  # prometheus:
+  #   enabled: true
+  #   namespace: prometheus-operator
+  #   instance: kube-prometheus
+  #   ## Enable service monitoring
+  #   serviceMonitor:
+  #     enabled: true
+  #     targetPort: 8088
+  #     path: /metrics
+  #     interval: 60s
+  #     scrapeTimeout: 30s
+  # #   ## Enable default PrometheusRule alerts for:
+  # #   ## - KubePodCrashLooping
+  # #   ## - PodFailure
+  # #   ## - ServiceDown
+  # #   ## - PodPendingUnknown
+  #   alerts:
+  #     enabled: true
