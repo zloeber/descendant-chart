@@ -21,6 +21,11 @@ archetype:
       cert-manager.io/cluster-issuer: "letsencrypt-staging"
     default:
       cert-manager.io/cluster-issuer: "default"
+  ports:
+    internal: 8000
+    external: 80
+  namespace:
+    enabled: true
   image:
     repository: zloeber/hello-world-pipeline
     tag: 'latest'
@@ -33,37 +38,30 @@ archetype:
   deployment:
     enabled: true
     ports:
-      metrics: 8088
       svc: 8000
     readinessProbe:
       enabled: true
       probe:
         httpGet:
-          path: /metrics
-          port: 8088
+          path: /
+          port: 8000
     livelinessProbe:
       enabled: true
       probe:
         httpGet:
-          path: /metrics
-          port: 8088
+          path: /
+          port: 8000
   service:
     enabled: true
-    ports:
-      svc:
-        port: 8000
-        targetPort: 8000
-        protocol: TCP
   ingress:
     enabled: true
-    tlsEnabled: true
+    tlsEnabled: false
     hosts:
-    - secretName: po-alertmanager-ingress
-      paths:
+    - paths:
       - path: "/"
         backend:
           serviceName: po-alertmanager
-          servicePort: 9093
+          servicePort: 8000
   prometheus:
     enabled: true
     namespace: prometheus-operator
