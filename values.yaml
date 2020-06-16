@@ -55,13 +55,13 @@ archetype:
     enabled: true
   ingress:
     enabled: true
-    # tlsEnabled: false
-    # hosts:
-    # - paths:
-    #   - path: "/"
-    #     backend:
-    #       serviceName: po-alertmanager
-    #       servicePort: 8000
+    tlsEnabled: false
+    hosts:
+    - paths:
+      - path: "/"
+        backend:
+#          serviceName: mysvc
+          servicePort: 8000
   # prometheus:
   #   enabled: true
   #   namespace: prometheus-operator
