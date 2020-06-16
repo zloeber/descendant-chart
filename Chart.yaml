@@ -8,5 +8,5 @@ maintainers:
   - name: Zachary Loeber
 dependencies:
   - name: archetype
-    version: "0.0.7"
+    version: "0.0.8"
     repository: https://zloeber.github.io/archetype-chart
